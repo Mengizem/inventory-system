@@ -38,7 +38,7 @@ class Util:
         for product in data:
             print(data[product])
 
-            @staticmethod
+    @staticmethod
     def search_product():
         inv_file = open("inventory.json", 'r')
         text = inv_file.read()
@@ -50,7 +50,7 @@ class Util:
         for p in data:
             product = data[p]
             if product["name"].__eq__(name):
-                result = product["name"]
+                result = product
                 break
 
         if result is None:
