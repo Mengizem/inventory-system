@@ -1,5 +1,6 @@
 import json
 
+
 class Util:
 
     @staticmethod
@@ -17,15 +18,16 @@ class Util:
             price = input()
             print("Enter Quantity of Product :- ")
             quantity = input()
-            
-            data[productId] = {'id': productId, 'name': name, 'unit_price': price, 'quantity_on_hand': quantity}
+
+            data[productId] = {'id': productId, 'name': name,
+                               'unit_price': price, 'quantity_on_hand': quantity}
         else:
             print("Product ID already present.")
         js = json.dumps(data)
         inventoryFile = open("inventory.json", 'w')
         inventoryFile.write(js)
-        inventoryFile.close()        
-	
+        inventoryFile.close()
+
     @staticmethod
     def display_all_data():
         inventoryFile = open("inventory.json", 'r')
@@ -34,4 +36,24 @@ class Util:
         inventoryFile.close()
         print("---- Product list ------")
         for product in data:
-            print(data[product]) 
+            print(data[product])
+
+            @staticmethod
+    def search_product():
+        inv_file = open("inventory.json", 'r')
+        text = inv_file.read()
+        data = json.loads(text)
+        inv_file.close()
+        print("Enter the name of the product you want to search: ")
+        name = input()
+        result = None
+        for p in data:
+            product = data[p]
+            if product["name"].__eq__(name):
+                result = product["name"]
+                break
+
+        if result is None:
+            print("product with name: " + name + " not found")
+        else:
+            print(result)
